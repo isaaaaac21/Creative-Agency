@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --blue-color: #0075ff;
+  --blue-alt-color: #0d69d5;
+  --orange-color: #f59e0b;
+  --green-color: #22c55e;
+  --red-color: #f44336;
+  --grey-color: #888;
+  --gold-color: gold;
+
+  --main-padding: 60px;
+}
+body {
+  font-family: "Work Sans", sans-serif;
+  height: 5000px;
+}
+html {
+  scroll-behavior: smooth;
+}
+html,
+body {
+  overflow-x: hidden;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.container {
+  overflow: hidden;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* Start Settings */
+
+aside a.open {
+  position: fixed;
+
+  padding: 7px;
+  cursor: pointer;
+  z-index: 4;
+  top: 70px;
+  left: 0px;
+  transition: 0.3s;
+}
+aside a.opened {
+  left: 200px;
+}
+
+aside .settings {
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  z-index: 3;
+  transition: 0.3s;
+  left: -200px;
+  overflow: hidden;
+}
+aside .settings.opened {
+  left: 0px;
+}
+aside .settings .colors ul {
+}
+aside .settings .colors ul li {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+aside .settings .colors ul li.selected {
+  outline: 3px solid white;
+}
+aside .settings .colors ul li.orange {
+  background-color: var(--orange-color);
+}
+aside .settings .colors ul li.red {
+  background-color: var(--red-color);
+}
+aside .settings .colors ul li.teal {
+  background-color: teal;
+}
+aside .settings .colors ul li.deepblue {
+  background-color: deepskyblue;
+}
+aside .settings .colors ul li.green {
+  background-color: var(--green-color);
+}
+
+aside .settings .random-bg button,
+aside .settings .show-bulls button {
+  padding: 5px 15px;
+  cursor: pointer;
+}
+aside .settings .random-bg button:not(.active),
+aside .settings .show-bulls button:not(.active) {
+  opacity: 0.5;
+}
+aside .settings > button {
+  margin: 20px auto;
+}
+
+/* End Settings */
+/* Start header */
+header {
+  height: 70px;
+  position: absolute;
+  z-index: 2;
+}
+header .bars {
+  display: none;
+}
+header nav {
+  justify-self: flex-end;
+}
+header nav ul li a {
+  color: white;
+}
+header nav ul li a:hover {
+  color: var(--orange-color);
+  transition: 0.3s;
+}
+/* End header */
+/* Start Landing Page */
+.landing-page {
+  background-image: url("../images/Landing-page/01.jpeg");
+  background-size: cover;
+  position: relative;
+  height: calc(100vh);
+  filter: blur(50%);
+}
+.landing-page .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.11);
+}
+.landing-page .bullets {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.landing-page .bullets a {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--orange-color);
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+}
+.landing-page .bullets a:hover {
+  background-color: var(--orange-color);
+}
+.landing-page .bullets a::before {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  background-color: orange;
+  left: -120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: -7px;
+  font-weight: 500;
+  opacity: 0;
+}
+
+.landing-page .bullets a:first-of-type::before {
+  content: "About Us";
+}
+.landing-page .bullets a:nth-child(2)::before {
+  content: "Skills";
+}
+.landing-page .bullets a:nth-child(3)::before {
+  content: "Gallery";
+}
+.landing-page .bullets a:nth-child(4)::before {
+  content: "Timeline";
+}
+.landing-page .bullets a:nth-child(5)::before {
+  content: "Features";
+}
+.landing-page .bullets a:last-of-type::before {
+  content: "Testimonials";
+  width: 130px;
+  left: -150px;
+}
+.landing-page .bullets a::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background-color: orange;
+  transform: rotate(45deg);
+  left: -28px;
+  top: 2px;
+  opacity: 0;
+}
+.landing-page .bullets a::before,
+.landing-page .bullets a::after {
+  transition: 0.01s;
+}
+.landing-page .bullets a:hover::before,
+.landing-page .bullets a:hover::after {
+  opacity: 1;
+}
+
+.landing-page .text p {
+  margin: 10px auto 0px;
+}
+/* End Landing Page */
+/* Start About us */
+section.about {
+  padding-top: var(--main-padding);
+  padding-bottom: var(--main-padding);
+}
+section.about .text {
+  flex: 1;
+}
+section.about .text p {
+  line-height: 1.6;
+}
+section.about .img {
+  flex: 1;
+}
+section.about .img img {
+  max-width: 200px;
+}
+/* End About us */
