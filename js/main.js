@@ -1,5 +1,4 @@
 
-
  //This logic for toggling the setting side bar when the gear button is clicked
  settings = document.querySelector("aside> .settings") ; 
  console.log(settings) ; 
@@ -28,23 +27,46 @@ setInterval(()=> {
 
 
 //This for changing the colors according to the selected option
+function removeSelectedClass(arrOptions){
+  for (let i =  0 ; i < arrOptions.length ; i++)
+    {
+      arrOptions[i].classList.remove("selected") ;
+    }
+}
+
 let liOptions = document.querySelectorAll("aside .settings .colors li"); 
 
 liOptions.forEach(element => {
-  element.addEventListener("click", ()=>{
-    let selectedColor = element.attributes
-    for (let i =  0 ; i < liOptions.length ; i++)
-    {
-      liOptions[i].classList.remove("selected") ;
-    }
+  element.addEventListener("click", (e)=>{
+    //first we get the selected color that needs to be applied to all elemnts
+    //Now we remove the select class from the elements 
+    removeSelectedClass(liOptions); 
     element.classList.add("selected") ; 
 
-
-
+    document.documentElement.style.setProperty('--main-color', e.target.dataset.color) ; 
+    localStorage.setItem("color_option", e.target.dataset.color)
+  
   })
 });
 
 
+// This logic for the local storage of the settings
+
+let mainColor = localStorage.getItem("color_option")  ; 
+if (mainColor!== null){
+  document.documentElement.style.setProperty('--main-color', mainColor) ; 
+  removeSelectedClass(liOptions);
+  for (let i = 0 ; i < liOptions.length ; i++){
+    if (liOptions[i].getAttribute("data-color") === mainColor){
+      liOptions[i].classList.add("selected") ; 
+    }
+  }
+
+
+
+
+
+}
 
 
 

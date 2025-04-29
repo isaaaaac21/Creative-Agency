@@ -4,9 +4,10 @@
   padding: 0;
 }
 :root {
+  --main-color: #f59e0b;
+  --orange-color: #f59e0b;
   --blue-color: #0075ff;
   --blue-alt-color: #0d69d5;
-  --orange-color: #f59e0b;
   --green-color: #22c55e;
   --red-color: #f44336;
   --grey-color: #888;
@@ -115,6 +116,7 @@ aside .settings .random-bg button,
 aside .settings .show-bulls button {
   padding: 5px 15px;
   cursor: pointer;
+  background-color: var(--main-color);
 }
 aside .settings .random-bg button:not(.active),
 aside .settings .show-bulls button:not(.active) {
@@ -141,7 +143,7 @@ header nav ul li a {
   color: white;
 }
 header nav ul li a:hover {
-  color: var(--orange-color);
+  color: var(--main-color);
   transition: 0.3s;
 }
 /* End header */
@@ -166,23 +168,24 @@ header nav ul li a:hover {
   transform: translateY(-50%);
   z-index: 1;
 }
+.landing-page .bullets.hide {
+  display: none;
+}
 .landing-page .bullets a {
   width: 20px;
   height: 20px;
-  border: 3px solid var(--orange-color);
+  border: 3px solid var(--main-color);
   background-color: transparent;
   cursor: pointer;
   position: relative;
   transition: 0.3s;
 }
-.landing-page .bullets a:hover {
-  background-color: var(--orange-color);
-}
+
 .landing-page .bullets a::before {
   position: absolute;
   width: 100px;
   height: 30px;
-  background-color: orange;
+  background-color: var(--main-color);
   left: -120px;
   display: flex;
   justify-content: center;
@@ -190,7 +193,7 @@ header nav ul li a:hover {
   color: white;
   margin-top: -7px;
   font-weight: 500;
-  opacity: 0;
+  display: none;
 }
 
 .landing-page .bullets a:first-of-type::before {
@@ -218,21 +221,20 @@ header nav ul li a:hover {
   position: absolute;
   width: 13px;
   height: 13px;
-  background-color: orange;
+  background-color: var(--main-color);
   transform: rotate(45deg);
   left: -28px;
   top: 2px;
-  opacity: 0;
-}
-.landing-page .bullets a::before,
-.landing-page .bullets a::after {
-  transition: 0.01s;
-}
-.landing-page .bullets a:hover::before,
-.landing-page .bullets a:hover::after {
-  opacity: 1;
+  display: none;
 }
 
+.landing-page .bullets a:hover::before,
+.landing-page .bullets a:hover::after {
+  display: flex;
+}
+.landing-page .text h1 span {
+  color: var(--main-color);
+}
 .landing-page .text p {
   margin: 10px auto 0px;
 }
@@ -241,6 +243,9 @@ header nav ul li a:hover {
 section.about {
   padding-top: var(--main-padding);
   padding-bottom: var(--main-padding);
+}
+section.about .text h2 {
+  color: var(--main-color);
 }
 section.about .text {
   flex: 1;
