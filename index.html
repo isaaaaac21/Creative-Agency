@@ -59,11 +59,13 @@
           <div class="btns mt-10">
             <button
               class="yes active c-white bg-orange bor-none fs-13 fw-bold rad-6"
+              data-bg="yes"
             >
               Yes
             </button>
             <button
               class="no ml-10 c-white bg-orange bor-none fs-13 fw-bold rad-6"
+              data-bg="no"
             >
               No
             </button>
@@ -114,7 +116,7 @@
         </div>
       </section>
       <section id="About" class="about">
-        <div class="container between-flex gap-20">
+        <div class="container between-flex gap-20 col-mobile text-c-mobile">
           <div class="text">
             <h2 class="m-0 c-orange fs-30">About Us</h2>
             <p class="mt-10 fs-18 fw- c-777">
@@ -129,6 +131,66 @@
           </div>
         </div>
       </section>
+      <!-- Skills Section -->
+      <section id="Skills" class="skills bg-eee">
+        <div class="container txt-c">
+          <h2 class="mb-25 fs-30">Our Skills</h2>
+          <div class="skill bg-white mt-20 p-20 between-flex gap-20 col-mobile">
+            <span class="fw-500 d-block txt-c fs-18">HTML</span>
+            <div class="progress bg-eee rad-6 bg-eee ovr-hidden">
+              <span data-width="80%" class="bar d-block"></span>
+            </div>
+          </div>
+          <div class="skill bg-white mt-20 p-20 between-flex gap-20 col-mobile">
+            <span class="fw-500 d-block txt-c fs-18">Css</span>
+            <div class="progress bg-eee rad-6 bg-eee ovr-hidden">
+              <span data-width="70%" class="bar d-block"></span>
+            </div>
+          </div>
+          <div class="skill bg-white mt-20 p-20 between-flex gap-20 col-mobile">
+            <span class="fw-500 d-block txt-c fs-18">JavaScript</span>
+            <div class="progress bg-eee rad-6 bg-eee ovr-hidden">
+              <span data-width="90%" class="bar d-block"></span>
+            </div>
+          </div>
+          <div class="skill bg-white mt-20 p-20 between-flex gap-20 col-mobile">
+            <span class="fw-500 d-block txt-c fs-18">BootStrap</span>
+            <div class="progress bg-eee rad-6 bg-eee ovr-hidden">
+              <span data-width="75%" class="bar d-block"></span>
+            </div>
+          </div>
+          <div class="skill bg-white mt-20 p-20 between-flex gap-20 col-mobile">
+            <span class="fw-500 d-block txt-c fs-18">Python</span>
+            <div class="progress bg-eee rad-6 bg-eee ovr-hidden">
+              <span data-width="60%" class="bar d-block"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Start Our Gallery -->
+      <section id="gallery" class="gallery p-relative">
+        <div class="container">
+          <h2 class="txt-c mb-25 fs-30">Our Gallery</h2>
+          <div class="images d-grid gap-10">
+            <img src="images/Landing-page/01.jpg" alt="" data-num="one" />
+            <img src="images/Landing-page/02.jpg" alt="" data-num="two" />
+            <img src="images/Landing-page/03.jpg" alt="" data-num="three" />
+            <img src="images/Landing-page/04.jpg" alt="" data-num="four" />
+            <img src="images/Landing-page/05.jpg" alt="" data-num="five" />
+            <img src="images/Landing-page/06.jpg" alt="" data-num="six" />
+            <img src="images/Landing-page/07.jpg" alt="" data-num="seven" />
+            <img src="images/Landing-page/08.jpg" alt="" data-num="eight" />
+            <img src="images/Landing-page/09.jpg" alt="" data-num="nine" />
+            <img src="images/Landing-page/10.jpg" alt="" data-num="ten" />
+          </div>
+          <div class="pop-up-img bg-white p-20 txt-c">
+            <span class="center-flex p-10 fs-18 c-white rad-half">X</span>
+            <h3 class="mb-20">Image number</h3>
+            <img src="images/Landing-page/11.jpg" alt="" />
+          </div>
+        </div>
+      </section>
+      <!-- End Our Gallery -->
     </main>
 
     <script src="js/main.js"></script>

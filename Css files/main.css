@@ -149,11 +149,10 @@ header nav ul li a:hover {
 /* End header */
 /* Start Landing Page */
 .landing-page {
-  background-image: url("../images/Landing-page/01.jpeg");
+  background-image: url("../images/Landing-page/01.jpg");
   background-size: cover;
   position: relative;
   height: calc(100vh);
-  filter: blur(50%);
 }
 .landing-page .overlay {
   position: absolute;
@@ -260,3 +259,99 @@ section.about .img img {
   max-width: 200px;
 }
 /* End About us */
+/* Start Skills */
+section.skills {
+  padding-top: var(--main-padding);
+  padding-bottom: var(--main-padding);
+}
+section.skills h2 {
+  color: var(--main-color);
+}
+section.skills .skill {
+}
+section.skills .skill > span {
+  width: 20%;
+}
+
+section.skills .skill .progress {
+  height: 30px;
+  width: 80%;
+}
+@media (max-width: 767px) {
+  section.skills .skill > span,
+  section.skills .skill .progress {
+    width: 100%;
+  }
+}
+section.skills .skill .progress > span {
+  width: 0;
+  transition: 0.5s;
+  height: 100%;
+  background-color: var(--main-color);
+}
+/* End Skills */
+/* Start Gallery */
+section.gallery {
+  padding-top: var(--main-padding);
+  padding-bottom: var(--main-padding);
+}
+section.gallery h2 {
+  color: var(--main-color);
+}
+section.gallery .images {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+section.gallery .images > div {
+  border: 5px solid #777;
+}
+section.gallery .images img {
+  height: 100px;
+  width: 200px;
+  padding: 3px;
+  border: 1px solid #777;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  section.gallery .images img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+section.gallery .pop-up-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  box-shadow: 0px 0px 4px 0px black;
+  border-radius: 5px;
+  z-index: 100000;
+}
+section.gallery .pop-up-img > span {
+  position: absolute;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  top: -20px;
+  right: -15px;
+  cursor: pointer;
+  box-shadow: 1px 0px 4px 0px black;
+}
+section.gallery .pop-up-img h3 {
+  color: var(--main-color);
+}
+section.gallery .pop-up-img img {
+  width: 600px;
+  height: 300px;
+}
+/* End Gallery */
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  left: 0;
+  top: 0;
+}

@@ -14,23 +14,48 @@
 
 
 //This for the random image backgrounds of the landing page
-let landingPage = document.querySelector(".landing-page")
+let landingPage = document.querySelector(".landing-page");
 
-let imgs = ["01.jpeg", "02.jpeg", "03.jpeg", "04.jpeg"] ; 
+let changBgBtns = document.querySelectorAll(".random-bg button"); 
+console.log(changBgBtns) ;
+let background_option; 
+let changeBgInt = null ; 
 
+if (localStorage.getItem("background_option") !== null){
+  background_option = localStorage.getItem("background_option") ; 
 
-setInterval(()=> {
-   let randomNum = Math.floor(Math.random() * imgs.length); 
-   console.log(randomNum) ; 
-   landingPage.style.backgroundImage = `url('../images/landing-page/${imgs[randomNum]}')` ; 
-}, 10000)
+  removeSelectedClass(changBgBtns, "active") ; 
+  if (background_option === "true")
+    {
+      background_option = true ; 
+      changBgBtns[0].classList.add("active") ;
+    } 
+  else
+  {
+     changBgBtns[1].classList.add("active") ;
+     background_option = false ; }
+}
+else {
+  background_option = true ; 
+}
 
+let imgs = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"] ; 
 
+function toggleInterval(){
+if (background_option){
+   changeBgInt = setInterval(()=> {
+     let randomNum = Math.floor(Math.random() * imgs.length); 
+     console.log(randomNum) ; 
+     landingPage.style.backgroundImage = `url('../images/landing-page/${imgs[randomNum]}')` ; 
+  }, 1000)
+  }
+}
+toggleInterval();
 //This for changing the colors according to the selected option
-function removeSelectedClass(arrOptions){
+function removeSelectedClass(arrOptions, className){
   for (let i =  0 ; i < arrOptions.length ; i++)
     {
-      arrOptions[i].classList.remove("selected") ;
+      arrOptions[i].classList.remove(className) ;
     }
 }
 
@@ -40,7 +65,7 @@ liOptions.forEach(element => {
   element.addEventListener("click", (e)=>{
     //first we get the selected color that needs to be applied to all elemnts
     //Now we remove the select class from the elements 
-    removeSelectedClass(liOptions); 
+    removeSelectedClass(liOptions, "selected"); 
     element.classList.add("selected") ; 
 
     document.documentElement.style.setProperty('--main-color', e.target.dataset.color) ; 
@@ -48,6 +73,37 @@ liOptions.forEach(element => {
   
   })
 });
+
+//Switch buttons 
+function switchBgButtons(buttons){
+  buttons.forEach(element =>{ 
+  element.addEventListener("click", (e) => {
+    removeSelectedClass(buttons, "active");
+    element.classList.add("active") ; 
+    
+    if (element.getAttribute("data-bg") === "yes"){
+      background_option = true ;
+      localStorage.setItem("background_option", true)
+      toggleInterval() ; 
+    }
+    else {
+      background_option = false ; 
+      localStorage.setItem("background_option", false)
+      clearInterval(changeBgInt) ; }
+  })
+}
+)}
+
+switchBgButtons(changBgBtns) ;
+
+
+
+
+
+
+// let hideBullets = document.querySelectorAll(".show-bulls button"); 
+// switchButton(hideBullets) ;
+
 
 
 // This logic for the local storage of the settings
@@ -61,14 +117,60 @@ if (mainColor!== null){
       liOptions[i].classList.add("selected") ; 
     }
   }
-
-
-
-
-
 }
 
 
+//This for filling the skills bars when scrolling to the skills secction
+
+let skillSection = document.querySelector("section.skills"); 
+
+let progressBars = document.querySelectorAll("span.bar") ; 
+
+function CheckSkillSectionInView(){
+  
+let skillSectionTop = skillSection.getBoundingClientRect().top ; 
+let windowHeight = window.innerHeight ; 
+if (skillSectionTop <= windowHeight - 250) {
+  progressBars.forEach(element => {
+    element.style.width = element.getAttribute("data-width"); 
+  });
+  window.removeEventListener("scroll", CheckSkillSectionInView) ; 
+
+}
+}
+window.addEventListener("scroll", CheckSkillSectionInView) ; 
+
+
+
+//This for showing the pop-up img when an img is clicked
+
+let gallImgs = document.querySelectorAll(".gallery .images img") ; 
+let popUpDiv = document.querySelector(".gallery .pop-up-img"); 
+let popUpTitle = document.querySelector(".gallery .pop-up-img> h3") ; 
+let popUpImg = document.querySelector(".gallery .pop-up-img> img") ; 
+let spanClose = document.querySelector(".gallery .pop-up-img> span") ; 
+
+spanClose.addEventListener("click", ()=>{
+  popUpDiv.style.display = "none" ; 
+ let overDiv = document.querySelector("body > .overlay") ; 
+ if (overDiv !== null) document.body.removeChild(overDiv) ; 
+})
+
+gallImgs.forEach(element => {
+  element.addEventListener("click", (e)=>{
+
+    let overDiv = document.createElement("div") ; 
+    overDiv.className="overlay" ; 
+    document.body.appendChild(overDiv) ; 
+
+
+
+    popUpTitle.textContent = `Image ${e.target.dataset.num}` ; 
+    popUpImg.setAttribute("src", element.getAttribute("src")) ; 
+    popUpDiv.style.display = "block" ; 
+
+    })
+});
 
 
 
