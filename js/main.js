@@ -1,10 +1,10 @@
 
  //This logic for toggling the setting side bar when the gear button is clicked
  settings = document.querySelector("aside> .settings") ; 
- console.log(settings) ; 
+
  
  openSide = document.querySelector(".open") ; 
- console.log(openSide) ; 
+
  
  openSide.addEventListener("click" ,() => {
    settings.classList.toggle("opened") ; 
@@ -13,18 +13,20 @@
  })
 
 
-//This for the random image backgrounds of the landing page
-let landingPage = document.querySelector(".landing-page");
 
+
+
+
+//This for the random image backgrounds of the landing 
+
+let landingPage = document.querySelector(".landing-page");
 let changBgBtns = document.querySelectorAll(".random-bg button"); 
-console.log(changBgBtns) ;
 let background_option; 
 let changeBgInt = null ; 
 
-if (localStorage.getItem("background_option") !== null){
-  background_option = localStorage.getItem("background_option") ; 
 
-  removeSelectedClass(changBgBtns, "active") ; 
+function ChangeBtnsAccordingToBgOpt(){
+  background_option = localStorage.getItem("background_option") ; 
   if (background_option === "true")
     {
       background_option = true ; 
@@ -35,9 +37,14 @@ if (localStorage.getItem("background_option") !== null){
      changBgBtns[1].classList.add("active") ;
      background_option = false ; }
 }
-else {
-  background_option = true ; 
+
+if (localStorage.getItem("background_option") !== null){
+
+  removeSelectedClass(changBgBtns, "active") ; 
+  ChangeBtnsAccordingToBgOpt();
 }
+else  background_option = true ; 
+
 
 let imgs = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"] ; 
 
@@ -45,12 +52,20 @@ function toggleInterval(){
 if (background_option){
    changeBgInt = setInterval(()=> {
      let randomNum = Math.floor(Math.random() * imgs.length); 
-     console.log(randomNum) ; 
      landingPage.style.backgroundImage = `url('../images/landing-page/${imgs[randomNum]}')` ; 
   }, 1000)
   }
 }
 toggleInterval();
+
+
+
+
+
+
+
+
+
 //This for changing the colors according to the selected option
 function removeSelectedClass(arrOptions, className){
   for (let i =  0 ; i < arrOptions.length ; i++)
@@ -63,8 +78,7 @@ let liOptions = document.querySelectorAll("aside .settings .colors li");
 
 liOptions.forEach(element => {
   element.addEventListener("click", (e)=>{
-    //first we get the selected color that needs to be applied to all elemnts
-    //Now we remove the select class from the elements 
+
     removeSelectedClass(liOptions, "selected"); 
     element.classList.add("selected") ; 
 
@@ -75,26 +89,30 @@ liOptions.forEach(element => {
 });
 
 //Switch buttons 
-function switchBgButtons(buttons){
-  buttons.forEach(element =>{ 
+function UpdateBgOptionAndStoreIt(boolVal){
+  background_option = boolVal ;
+  localStorage.setItem("background_option", boolVal)
+}
+
+
+  changBgBtns.forEach(element =>{ 
   element.addEventListener("click", (e) => {
-    removeSelectedClass(buttons, "active");
+    removeSelectedClass(changBgBtns, "active");
     element.classList.add("active") ; 
     
     if (element.getAttribute("data-bg") === "yes"){
-      background_option = true ;
-      localStorage.setItem("background_option", true)
+      console.log("yes")
+      UpdateBgOptionAndStoreIt(true) ; 
       toggleInterval() ; 
     }
     else {
-      background_option = false ; 
-      localStorage.setItem("background_option", false)
+      UpdateBgOptionAndStoreIt(false) ; 
       clearInterval(changeBgInt) ; }
   })
-}
-)}
+})
 
-switchBgButtons(changBgBtns) ;
+
+
 
 
 
