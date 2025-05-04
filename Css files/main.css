@@ -17,7 +17,6 @@
 }
 body {
   font-family: "Work Sans", sans-serif;
-  height: 5000px;
 }
 html {
   scroll-behavior: smooth;
@@ -124,6 +123,7 @@ aside .settings .show-bulls button:not(.active) {
 }
 aside .settings > button {
   margin: 20px auto;
+  cursor: pointer;
 }
 
 /* End Settings */
@@ -133,19 +133,67 @@ header {
   position: absolute;
   z-index: 2;
 }
+@media (max-width: 767px) {
+  header .container {
+    justify-content: space-around;
+    overflow: visible;
+  }
+}
 header .bars {
+  font-size: 25px;
+  color: var(--main-color);
+  cursor: pointer;
+  position: relative;
   display: none;
+}
+header .bars:hover + nav {
+  display: block;
+}
+@media (max-width: 767px) {
+  header .bars {
+    display: block;
+  }
+  header .bars::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 40px;
+    right: 0px;
+    background-color: white;
+  }
 }
 header nav {
   justify-self: flex-end;
 }
+
+@media (max-width: 767px) {
+  header nav ul {
+    padding-left: 30px;
+    position: absolute;
+    top: calc(0px + 70px);
+    background-color: white;
+    width: calc(100% - 30px);
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 header nav ul li a {
   color: white;
+}
+
+@media (max-width: 767px) {
+  header nav ul li a {
+    color: black;
+  }
 }
 header nav ul li a:hover {
   color: var(--main-color);
   transition: 0.3s;
 }
+
 /* End header */
 /* Start Landing Page */
 .landing-page {
@@ -504,6 +552,79 @@ section.testims .container .boxes .box:hover span.name {
   color: var(--main-color);
 }
 /* End Testimonials  */
+
+/* Start Contact Us */
+section.contact {
+}
+section.contact .container {
+  padding-top: var(--main-padding);
+  padding-bottom: var(--main-padding);
+  background-image: url("../images/map.jpg");
+  background-size: contain;
+  z-index: 1;
+}
+section.contact .container .overlay {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.733);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -3;
+}
+section.contact .container h2 {
+  color: var(--main-color);
+  margin-bottom: 50px;
+}
+section.contact .container form {
+  max-width: 800px;
+  margin: 30px auto;
+}
+@media (max-width: 767px) {
+  section.contact .container form {
+    gap: 40px;
+  }
+}
+section.contact .container form .left {
+  flex: 1;
+}
+section.contact .container form input,
+section.contact .container form textarea {
+  background-color: #ececec50;
+  outline: none;
+  transition: 0.3s;
+}
+section.contact .container form .right {
+  align-self: stretch;
+  flex: 1;
+}
+
+section.contact .container form .right textarea {
+  height: 70%;
+  resize: none;
+}
+@media (max-width: 767px) {
+  section.contact .container form .right textarea {
+    min-height: 100px;
+  }
+}
+section.contact .container form .right input[type="submit"] {
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+section.contact .container form input:focus,
+section.contact .container form textarea:focus {
+  border-color: var(--main-color);
+}
+/* End Contact Us */
+/* Start Footer */
+footer {
+  background-color: var(--main-color);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+/* End Footer */
 body > .overlay {
   position: fixed;
   width: 100%;

@@ -22,13 +22,12 @@
   </head>
   <body>
     <header class="c-white w-full">
-      <div class="container between-flex h-full">
+      <div class="container between-flex h-full p-relative">
         <div class="logo fw-bold fs-18">
           <a class="c-white" href="#">Special Design</a>
         </div>
-        <i class="bars fa-solid fa-bars"></i>
         <nav>
-          <ul class="d-flex">
+          <ul class="d-flex col-mobile">
             <li class="p-10"><a href="">About</a></li>
             <li class="p-10"><a href="">Skills</a></li>
             <li class="p-10"><a href="">Gallery</a></li>
@@ -37,6 +36,7 @@
             <li class="p-10"><a href="#">Testimonials</a></li>
           </ul>
         </nav>
+        <i class="bars fa-solid fa-bars"></i>
       </div>
     </header>
     <aside class="">
@@ -352,8 +352,68 @@
         </div>
       </section>
       <!-- End Testimonials -->
+      <!-- Start Contact Us -->
+      <section id="Contact" class="contact">
+        <div class="container p-relative">
+          <div class="overlay"></div>
+          <h2 class="fs-30 txt-c">Contact Us</h2>
+          <form action="" class="center-flex gap-20 col-mobile p-relative">
+            <div class="left">
+              <input
+                type="text"
+                name="name"
+                id=""
+                class="p-10 bor-ccc mb-15 w-full"
+                placeholder="Your Name"
+              />
+              <input
+                type="tel"
+                name="phone"
+                id=""
+                class="p-10 bor-ccc mb-15 w-full"
+                placeholder="Your Phone"
+              />
+              <input
+                type="email"
+                name="email"
+                id=""
+                class="p-10 bor-ccc mb-15 w-full"
+                placeholder="Your Email"
+              />
+              <input
+                type="text"
+                name="subject"
+                id=""
+                class="p-10 bor-ccc w-full"
+                placeholder="Subject"
+              />
+            </div>
+            <div class="right">
+              <textarea
+                name="message"
+                id=""
+                placeholder="Your message"
+                class="p-10 bor-ccc w-full mb-15"
+              ></textarea>
+              <input
+                type="submit"
+                class="d-block p-10 c-white w-full bor-none"
+              />
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- End Contact Us -->
     </main>
-
+    <footer>
+      <div class="container">
+        <p class="c-white fs-18">
+          &copy; 2025
+          <span class="c-black fw-500">Creative Agency</span> Website. All
+          rights reserved.
+        </p>
+      </div>
+    </footer>
     <script src="js/main.js"></script>
   </body>
 </html>

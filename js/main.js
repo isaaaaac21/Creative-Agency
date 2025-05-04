@@ -1,8 +1,6 @@
 
  //This logic for toggling the setting side bar when the gear button is clicked
  settings = document.querySelector("aside> .settings") ; 
-
- 
  openSide = document.querySelector(".open") ; 
 
  
@@ -23,7 +21,6 @@ let landingPage = document.querySelector(".landing-page");
 let changBgBtns = document.querySelectorAll(".random-bg button"); 
 let background_option; 
 let changeBgInt = null ; 
-
 
 function ChangeBtnsAccordingToBgOpt(){
   background_option = localStorage.getItem("background_option") ; 
@@ -46,8 +43,8 @@ if (localStorage.getItem("background_option") !== null){
 else  background_option = true ; 
 
 
-let imgs = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"] ; 
 
+let imgs = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"] ; 
 function toggleInterval(){
 if (background_option){
    changeBgInt = setInterval(()=> {
@@ -58,6 +55,30 @@ if (background_option){
 }
 toggleInterval();
 
+
+
+
+//Switch background option  buttons 
+function UpdateBgOptionAndStoreIt(boolVal){
+  background_option = boolVal ;
+  localStorage.setItem("background_option", boolVal)
+}
+
+changBgBtns.forEach(element =>{ 
+  element.addEventListener("click", (e) => {
+    removeSelectedClass(changBgBtns, "active");
+    element.classList.add("active") ; 
+    
+    if (element.getAttribute("data-bg") === "yes"){
+     
+      UpdateBgOptionAndStoreIt(true) ; 
+      toggleInterval() ; 
+    }
+    else {
+      UpdateBgOptionAndStoreIt(false) ; 
+      clearInterval(changeBgInt) ; }
+  })
+})
 
 
 
@@ -75,7 +96,6 @@ function removeSelectedClass(arrOptions, className){
 }
 
 let liOptions = document.querySelectorAll("aside .settings .colors li"); 
-
 liOptions.forEach(element => {
   element.addEventListener("click", (e)=>{
 
@@ -88,39 +108,35 @@ liOptions.forEach(element => {
   })
 });
 
-//Switch buttons 
-function UpdateBgOptionAndStoreIt(boolVal){
-  background_option = boolVal ;
-  localStorage.setItem("background_option", boolVal)
-}
 
 
-  changBgBtns.forEach(element =>{ 
-  element.addEventListener("click", (e) => {
-    removeSelectedClass(changBgBtns, "active");
+
+
+
+
+
+////THis for hiding and showing the bullets
+
+
+let hideBullets = document.querySelectorAll(".show-bulls button"); 
+let bullsDiv = document.querySelector(".bullets") ; 
+console.log(hideBullets)
+console.log(bullsDiv)
+
+hideBullets.forEach(element => {
+  element.addEventListener("click", ()=>{
+    removeSelectedClass(hideBullets, "active") ; 
     element.classList.add("active") ; 
-    
-    if (element.getAttribute("data-bg") === "yes"){
-      console.log("yes")
-      UpdateBgOptionAndStoreIt(true) ; 
-      toggleInterval() ; 
+    if (element.classList.contains("yes")){
+        bullsDiv.style.display = "block" ; 
+        localStorage.setItem("show-bullets", true) ; 
+      }
+      else {
+        bullsDiv.style.display = "none" ; 
+        localStorage.setItem("show-bullets", false) ; 
     }
-    else {
-      UpdateBgOptionAndStoreIt(false) ; 
-      clearInterval(changeBgInt) ; }
   })
-})
-
-
-
-
-
-
-
-
-
-// let hideBullets = document.querySelectorAll(".show-bulls button"); 
-// switchButton(hideBullets) ;
+});
 
 
 
@@ -129,7 +145,7 @@ function UpdateBgOptionAndStoreIt(boolVal){
 let mainColor = localStorage.getItem("color_option")  ; 
 if (mainColor!== null){
   document.documentElement.style.setProperty('--main-color', mainColor) ; 
-  removeSelectedClass(liOptions);
+  removeSelectedClass(liOptions, "selected");
   for (let i = 0 ; i < liOptions.length ; i++){
     if (liOptions[i].getAttribute("data-color") === mainColor){
       liOptions[i].classList.add("selected") ; 
@@ -137,11 +153,25 @@ if (mainColor!== null){
   }
 }
 
+let showBullets = localStorage.getItem("show-bullets") ;
+if (showBullets !== null){
+  removeSelectedClass(hideBullets, "active");
+  if (showBullets === "true"){
+    hideBullets[0].classList.add("active") ; 
+    bullsDiv.style.display = "block" ; 
+
+  }
+  else {
+    hideBullets[1].classList.add("active") ; 
+    bullsDiv.style.display = "none" ; 
+
+  }
+}
+
 
 //This for filling the skills bars when scrolling to the skills secction
 
 let skillSection = document.querySelector("section.skills"); 
-
 let progressBars = document.querySelectorAll("span.bar") ; 
 
 function CheckSkillSectionInView(){
@@ -193,9 +223,18 @@ gallImgs.forEach(element => {
 
 
 
+//This for reset option
+let resetBtn = document.querySelector(".settings .reset") ; 
+let defColor = document.querySelector(".settings .color ul .orange"); 
+let defBgOpt = document.querySelector(".settings .random-bg .yes") ; 
+let defBull = 
+console.log(resetBtn) ; 
 
-
-
+resetBtn.addEventListener("click", ()=>{
+  liOptions[0].click(); 
+  hideBullets[0].click() ; 
+  changBgBtns[0].click() ; 
+})
 
 
 
