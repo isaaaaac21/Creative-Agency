@@ -40,6 +40,13 @@ a {
 }
 
 /* small */
+
+@media (min-width: 576px) {
+  .container {
+    width: 540px;
+  }
+}
+
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -57,6 +64,18 @@ a {
     width: 1170px;
   }
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+}
+
 /* Start Settings */
 
 aside a.open {
@@ -135,7 +154,6 @@ header {
 }
 @media (max-width: 767px) {
   header .container {
-    justify-content: space-around;
     overflow: visible;
   }
 }
@@ -145,6 +163,7 @@ header .bars {
   cursor: pointer;
   position: relative;
   display: none;
+  margin-right: 20px;
 }
 header .bars:hover + nav {
   display: block;
@@ -153,7 +172,7 @@ header .bars:hover + nav {
   header .bars {
     display: block;
   }
-  header .bars::after {
+  header .bars.bars-opened::after {
     content: "";
     width: 20px;
     height: 20px;
@@ -167,9 +186,14 @@ header .bars:hover + nav {
 header nav {
   justify-self: flex-end;
 }
-
+header nav ul {
+  display: flex;
+}
 @media (max-width: 767px) {
   header nav ul {
+    display: none;
+  }
+  header nav .ul-mob {
     padding-left: 30px;
     position: absolute;
     top: calc(0px + 70px);
@@ -178,6 +202,7 @@ header nav {
     border-radius: 10px;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
   }
 }
 header nav ul li a {
@@ -213,7 +238,7 @@ header nav ul li a:hover {
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
-  z-index: 1;
+  z-index: 5000000000000000;
 }
 .landing-page .bullets.hide {
   display: none;
@@ -258,8 +283,13 @@ header nav ul li a:hover {
 .landing-page .bullets a:nth-child(5)::before {
   content: "Features";
 }
-.landing-page .bullets a:last-of-type::before {
+.landing-page .bullets a:nth-child(6)::before {
   content: "Testimonials";
+  width: 130px;
+  left: -150px;
+}
+.landing-page .bullets a:last-of-type::before {
+  content: "Contact Us";
   width: 130px;
   left: -150px;
 }
@@ -547,6 +577,11 @@ section.testims .container .boxes .box span {
 }
 section.testims .container .boxes .box:hover {
   transform: translateY(-10px);
+}
+@media (max-width: 767px) {
+  section.testims .container .boxes .box:hover {
+    transform: translateX(-10px);
+  }
 }
 section.testims .container .boxes .box:hover span.name {
   color: var(--main-color);

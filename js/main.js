@@ -50,7 +50,7 @@ if (background_option){
    changeBgInt = setInterval(()=> {
      let randomNum = Math.floor(Math.random() * imgs.length); 
      landingPage.style.backgroundImage = `url('../images/landing-page/${imgs[randomNum]}')` ; 
-  }, 1000)
+  }, 10000)
   }
 }
 toggleInterval();
@@ -237,8 +237,17 @@ resetBtn.addEventListener("click", ()=>{
 })
 
 
+//this for appearing the ul list 
+
+let bars = document.querySelector(".bars") ; 
+let ul = document.querySelector(".bars + ul") ; 
 
 
+bars.addEventListener("click", ()=>{
+  bars.classList.toggle("bars-opened") ; 
+  ul.classList.toggle("ul-mob") ; 
+
+})
 
 
 
