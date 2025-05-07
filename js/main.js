@@ -49,8 +49,7 @@ function toggleInterval(){
 if (background_option){
    changeBgInt = setInterval(()=> {
      let randomNum = Math.floor(Math.random() * imgs.length); 
-     landingPage.style.backgroundImage = `url("images/landing-page/${imgs[randomNum]}")` ; 
-  }, 1000)
+     landingPage.style.backgroundImage = `url("/Creative-Agency/images/landing-page/${imgs[randomNum]}")`;  }, 1000)
   }
 }
 toggleInterval();
