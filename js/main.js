@@ -53,7 +53,7 @@ if (background_option){
      ? '/Creative-Agency'
      : '';
    landingPage.style.backgroundImage = `url("${basePath}/images/Landing-page/${imgs[randomNum]}")`;
-  }, 1000)
+  }, 10000)
   }
 }
 toggleInterval();
