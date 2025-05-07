@@ -259,7 +259,24 @@ bars.addEventListener("click", ()=>{
 
 
 
+//Handle navigation logic
+function handleNavLinks(){
+  const links = document.querySelectorAll("a:not(.logo a, aside a)") ; 
+  console.log(links); 
+  links.forEach(link => {
+    link.addEventListener("click", (e)=>{
+      e.preventDefault() ; 
 
+      const sectionID = link.getAttribute("href") ; 
+      console.log(link)  ; 
+
+      document.querySelector(sectionID).scrollIntoView({behavior : "smooth"}); 
+
+      window.history.replaceState(null, '', sectionID) ; 
+    })
+  });
+}
+handleNavLinks() ; 
 
 
 
